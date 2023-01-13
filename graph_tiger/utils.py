@@ -101,7 +101,7 @@ def get_laplacian(graph):
     :param graph: undirected NetworkX graph
     :return: Scipy sparse Laplacian matrix
     """
-    A = nx.to_scipy_sparse_matrix(graph, format='csr', dtype=np.float, nodelist=graph.nodes)
+    A = nx.to_scipy_sparse_array(graph, format='csr', dtype=np.float, nodelist=graph.nodes)
     D = sparse.spdiags(data=A.sum(axis=1).flatten(), diags=[0], m=len(graph), n=len(graph), format='csr')
     L = D - A
 
