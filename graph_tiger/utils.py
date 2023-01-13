@@ -25,7 +25,7 @@ def get_sparse_graph(graph):
     :return: Scipy sparse adjacency matrix
     """
 
-    return nx.to_scipy_sparse_matrix(graph, format='csr', dtype=float, nodelist=graph.nodes)
+    return nx.to_scipy_sparse_array(graph, format='csr', dtype=float, nodelist=graph.nodes)
 
 
 def get_adjacency_spectrum(graph, k=np.inf, eigvals_only=False, which='LA', use_gpu=False):
@@ -45,7 +45,7 @@ def get_adjacency_spectrum(graph, k=np.inf, eigvals_only=False, which='LA', use_
         eigpairs = eigh(A, eigvals_only=eigvals_only)
 
     else:
-        A = nx.to_scipy_sparse_matrix(graph, format='csr', dtype=np.float, nodelist=graph.nodes)
+        A = nx.to_scipy_sparse_array(graph, format='csr', dtype=np.float, nodelist=graph.nodes)
 
         if gpu_available() and use_gpu:
             import cupy as cp
